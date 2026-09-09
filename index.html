@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<title>Programa Meu Cão Educado — Diego Lima, Veterinário</title>
+
+<meta name="description" content="Esse é você e o seu cachorro hoje. Uma história em desenhos sobre o que muda quando ele aprende o que fazer.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://canilmeucaoeducado.github.io/meucaoeducado/">
+<meta property="og:title" content="Esse é você e o seu cachorro hoje">
+<meta property="og:description" content="Uma história em desenhos sobre o que muda quando o seu cachorro aprende o que fazer.">
+<meta property="og:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/diego_quem_sou_eu.webp">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Meu Cão Educado">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Esse é você e o seu cachorro hoje">
+<meta name="twitter:description" content="Uma história em desenhos sobre o que muda quando o seu cachorro aprende o que fazer.">
+<meta name="twitter:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/diego_quem_sou_eu.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://canilmeucaoeducado.github.io">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#EDF1E1;
+    --bg-virada:#DCE5C6;
+    --verde-escuro:#2F401A;
+    --verde:#3B4D1E;
+    --verde-medio:#5A6B2D;
+    --verde-claro:#7A9440;
+    --verde-fraco:rgba(90,107,45,0.55);
+    --linha:rgba(90,107,45,0.16);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    font-family:'Outfit',Arial,sans-serif;
+    background:var(--bg);
+    color:var(--verde);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-tap-highlight-color:rgba(90,107,45,0.12);
+    text-rendering:optimizeLegibility;
+  }
+  img,svg{max-width:100%;display:block;}
+  .wrap{width:100%;max-width:620px;margin:0 auto;padding:0 22px;}
+  .mao{font-family:'Patrick Hand','Outfit',cursive;font-weight:400;}
+
+  /* ---------- botões ---------- */
+  .btn{
+    display:inline-block;background:var(--verde-medio);color:#fff;
+    padding:17px 34px;border-radius:999px;text-decoration:none;
+    font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;
+    letter-spacing:.2px;transition:.25s;border:none;cursor:pointer;
+    box-shadow:0 6px 18px rgba(90,107,45,0.18);
+  }
+  .btn:hover{background:var(--verde-escuro);transform:translateY(-2px);}
+  .btn-block{display:block;width:100%;text-align:center;}
+  .btn-note{display:block;margin-top:12px;font-size:14px;color:var(--verde-escuro);}
+
+  /* ---------- história em quadros ---------- */
+  .historia{padding:14px 0 20px;}
+  .quadro{
+    max-width:470px;margin:0 auto;
+    padding:44px 0;
+    text-align:center;
+  }
+  .quadro + .quadro{border-top:1px solid var(--linha);}
+
+  .fala{
+    font-family:'Patrick Hand',cursive;
+    font-size:clamp(27px,6.6vw,38px);
+    line-height:1.16;text-transform:uppercase;
+    color:var(--verde-escuro);
+    letter-spacing:.01em;
+  }
+  .fala.menor{font-size:clamp(23px,5.4vw,30px);color:var(--verde);}
+  .fala em{font-style:normal;color:var(--verde-claro);}
+  .apoio{
+    margin-top:16px;font-size:17px;color:var(--verde-medio);line-height:1.65;
+  }
+  .marcador{
+    display:inline-block;margin-bottom:20px;
+    font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--verde-claro);
+  }
+  .marcador.grande{font-size:19px;letter-spacing:.16em;}
+  .desenho{margin:26px auto 0;max-width:400px;}
+  .desenho.antes{margin:0 auto 26px;}
+  .desenho svg{width:100%;height:auto;}
+
+  /* traço desenhado à mão */
+  .traco{
+    fill:none;stroke:var(--verde);stroke-width:3.2;
+    stroke-linecap:round;stroke-linejoin:round;
+  }
+  .traco-fino{fill:none;stroke:var(--verde-medio);stroke-width:2.2;stroke-linecap:round;}
+  .traco-forte{fill:none;stroke:var(--verde-escuro);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round;}
+  .ponto{fill:var(--verde);stroke:none;}
+  .ponto-claro{fill:var(--verde-claro);stroke:none;}
+
+  .virada{
+    background:var(--bg-virada);
+    border-radius:22px;
+    padding:44px 26px;
+    margin:14px auto;
+  }
+  .virada .apoio{color:var(--verde-escuro);}
+
+  /* ---------- selo do topo ---------- */
+  .topo-selo{padding:34px 0 4px;text-align:center;}
+  .topo-selo span{
+    display:inline-block;padding:11px 26px;border-radius:999px;
+    border:1px solid var(--linha);background:#fff;
+    font-family:'Outfit',sans-serif;
+    font-size:12.5px;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--verde-medio);
+  }
+
+  /* ---------- seções ---------- */
+  .secao{padding:66px 0;}
+  .secao-soft{background:var(--bg-soft);}
+  .titulo{
+    font-family:'Patrick Hand',cursive;
+    font-size:clamp(30px,7vw,42px);line-height:1.12;
+    text-transform:uppercase;text-align:center;color:var(--verde-escuro);
+  }
+  .subtitulo{
+    text-align:center;font-size:16.5px;color:var(--verde-fraco);
+    max-width:440px;margin:14px auto 0;
+  }
+
+  /* ---------- oferta ---------- */
+  .oferta{padding:70px 0;}
+  .oferta-card{
+    max-width:530px;margin:0 auto;background:#fff;
+    border:1px solid var(--linha);border-radius:26px;
+    padding:42px 30px 34px;text-align:center;
+    box-shadow:0 18px 44px rgba(47,64,26,0.07);
+  }
+  .oferta-selo{
+    display:inline-block;padding:6px 16px;border-radius:999px;
+    background:var(--verde-claro);color:#fff;
+    font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .oferta-nome{
+    font-family:'Outfit',sans-serif;font-size:clamp(21px,4.6vw,26px);font-weight:700;
+    color:var(--verde-escuro);margin-top:16px;line-height:1.25;letter-spacing:-0.01em;
+  }
+  .oferta-linha{font-size:16px;color:var(--verde-medio);margin-top:10px;}
+  .oferta-preco{
+    margin-top:26px;font-size:clamp(34px,8.4vw,46px);font-weight:800;
+    color:var(--verde-medio);line-height:1.05;letter-spacing:-0.02em;
+  }
+  .oferta-avista{font-size:16px;color:var(--verde-escuro);margin-top:4px;}
+  .oferta-inclui{list-style:none;text-align:left;margin:26px auto 30px;max-width:400px;display:grid;gap:11px;}
+  .oferta-inclui li{display:flex;gap:11px;font-size:16px;color:var(--verde);line-height:1.5;}
+  .oferta-inclui li::before{
+    content:"";flex-shrink:0;width:7px;height:7px;border-radius:50%;
+    background:var(--verde-claro);margin-top:9px;
+  }
+
+  /* ---------- prova ---------- */
+  .carrossel-wrap{position:relative;margin-top:32px;}
+  .carrossel{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 22px 18px;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scroll-padding-left:22px;
+  }
+  .carrossel::-webkit-scrollbar{display:none;}
+  .card-prova{flex:0 0 auto;scroll-snap-align:center;border-radius:16px;overflow:hidden;
+    box-shadow:0 8px 22px rgba(47,64,26,0.10);background:#fff;}
+  .card-prova img{width:260px;height:auto;}
+  .seta{
+    position:absolute;top:44%;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--linha);background:#fff;color:var(--verde-medio);
+    font-size:17px;cursor:pointer;display:none;
+  }
+  .seta-prev{left:8px;} .seta-next{right:8px;}
+  @media(min-width:900px){.seta{display:block;}}
+
+  .bolinhas{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:8px;
+    margin-top:14px;padding:0 22px;
+  }
+  .bolinhas i{
+    width:7px;height:7px;border-radius:50%;
+    background:rgba(90,107,45,0.26);transition:.25s;
+  }
+  .bolinhas i.ativa{background:var(--verde-medio);transform:scale(1.3);}
+
+  /* ---------- fecho ---------- */
+  .fecho{padding:78px 0 96px;text-align:center;}
+  .fecho h2{
+    font-family:'Patrick Hand',cursive;
+    font-size:clamp(32px,8vw,48px);line-height:1.1;text-transform:uppercase;
+    color:var(--verde-escuro);
+  }
+  .fecho p{margin:20px auto 30px;max-width:440px;font-size:17px;color:var(--verde);}
+
+  footer{border-top:1px solid var(--linha);padding:26px 22px 40px;text-align:center;}
+  footer p{font-size:13px;color:var(--verde-escuro);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.visivel{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- celular ---------- */
+  @media(max-width:640px){
+    .wrap{padding:0 18px;}
+
+    .topo-selo{padding:24px 0 2px;}
+    .topo-selo span{padding:10px 20px;font-size:11.5px;letter-spacing:.14em;}
+
+    .historia{padding:8px 0 12px;}
+    .quadro{padding:30px 0;}
+    .fala{line-height:1.14;}
+    .apoio{margin-top:13px;font-size:16.5px;line-height:1.6;}
+    .marcador{margin-bottom:15px;}
+    .desenho{margin-top:20px;max-width:320px;}
+    .desenho.antes{margin:0 auto 20px;}
+
+    .virada{padding:32px 20px;border-radius:18px;margin:8px auto;}
+
+    .secao{padding:46px 0;}
+    .oferta{padding:46px 0 40px;}
+    .oferta-card{padding:32px 20px 28px;border-radius:20px;}
+    .oferta-preco{margin-top:20px;}
+    .oferta-inclui{margin:22px auto 26px;gap:10px;}
+    .oferta-inclui li{font-size:15.5px;}
+
+    .fecho{padding:52px 0 56px;}
+    .fecho p{margin:16px auto 0;font-size:16.5px;}
+
+    .carrossel{gap:12px;padding:4px 18px 16px;scroll-padding-left:18px;}
+    .card-prova img{width:min(78vw,300px);}
+    .bolinhas{gap:7px;margin-top:12px;padding:0 18px;}
+
+    .btn{padding:18px 26px;font-size:16.5px;}
+
+    footer{padding:22px 18px calc(28px + env(safe-area-inset-bottom));}
+  }
+
+  @media(max-width:360px){
+    .wrap{padding:0 15px;}
+    .quadro{padding:26px 0;}
+    .desenho{max-width:280px;}
+    .oferta-card{padding:28px 16px 24px;}
+    .oferta-inclui li{font-size:15px;}
+  }
+</style>
+
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1336628157581322');
+  fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1336628157581322&ev=PageView&noscript=1" alt=""></noscript>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w3fnz1hr1l");
+</script>
+</head>
+
+<body>
+
+<!-- ===================== SELO DO TOPO ===================== -->
+<div class="topo-selo">
+  <div class="wrap"><span>Programa Meu Cão Educado</span></div>
+</div>
+
+<!-- ===================== HISTÓRIA ===================== -->
+<section class="historia" id="historia">
+  <div class="wrap">
+
+    <!-- 1. esse é você -->
+    <div class="quadro reveal">
+      <p class="fala">Esse é você hoje.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Desenho de uma pessoa em pé">
+          <circle class="traco" cx="200" cy="58" r="30"/>
+          <circle class="ponto" cx="190" cy="52" r="3.4"/>
+          <circle class="ponto" cx="211" cy="52" r="3.4"/>
+          <path class="traco" d="M188 70 L212 70"/>
+          <path class="traco" d="M200 88 L200 152"/>
+          <path class="traco" d="M200 104 L164 128"/>
+          <path class="traco" d="M200 104 L236 128"/>
+          <path class="traco" d="M200 152 L176 208"/>
+          <path class="traco" d="M200 152 L224 208"/>
+          <path class="traco-fino" d="M148 216 L184 208 M166 220 L206 210 M196 220 L236 210 M220 216 L254 208"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2. e esse é o seu cachorro -->
+    <div class="quadro reveal">
+      <p class="fala">E esse é o seu cachorro hoje.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Desenho de um cachorro em pé">
+          <g transform="translate(96 52)">
+            <path class="traco" d="M28 66 C40 46 76 42 116 44 C140 45 156 40 164 28"/>
+            <path class="traco" d="M164 28 C172 16 192 18 194 34 C196 46 202 50 214 54 C206 62 196 64 190 63"/>
+            <path class="traco" d="M190 63 C180 68 170 68 162 62"/>
+            <path class="traco" d="M162 62 C158 72 158 82 158 90"/>
+            <path class="traco" d="M172 24 L164 4 L184 18"/>
+            <circle class="ponto" cx="186" cy="34" r="3.6"/>
+            <path class="traco" d="M44 82 C78 98 128 98 158 88"/>
+            <path class="traco" d="M158 90 L158 122 M142 88 L138 122 M44 82 L38 122 M60 88 L64 122"/>
+            <path class="traco" d="M28 66 C12 56 10 34 24 24"/>
+            <path class="traco-fino" d="M14 132 L52 124 M40 136 L84 126 M92 136 L134 126 M126 132 L166 124"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 3. todo dia começa assim -->
+    <div class="quadro reveal">
+      <p class="fala">Todo dia ele te puxa no passeio.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Desenho de uma pessoa sendo puxada pelo cachorro na guia">
+          <!-- pessoa inclinada para trás -->
+          <g transform="translate(28 40) rotate(-13 70 90)">
+            <circle class="traco" cx="70" cy="34" r="24"/>
+            <circle class="ponto" cx="62" cy="30" r="2.8"/>
+            <circle class="ponto" cx="79" cy="30" r="2.8"/>
+            <path class="traco" d="M60 46 C68 40 76 44 80 48"/>
+            <path class="traco" d="M70 58 L70 110"/>
+            <path class="traco" d="M70 72 L42 94"/>
+            <path class="traco" d="M70 72 L112 82"/>
+            <path class="traco" d="M70 110 L48 156"/>
+            <path class="traco" d="M70 110 L92 156"/>
+          </g>
+          <!-- guia esticada -->
+          <path class="traco-forte" d="M136 118 L246 126"/>
+          <!-- cachorro puxando -->
+          <g transform="translate(232 82) scale(0.82)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M166 59 C156 64 146 64 138 58"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <circle class="ponto" cx="162" cy="30" r="3.4"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L146 116 M120 82 L124 116 M34 74 L18 112 M50 82 L44 116"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+          </g>
+          <!-- linhas de esforço -->
+          <path class="traco-fino" d="M256 66 L272 52 M282 62 L300 50 M306 72 L326 62"/>
+          <path class="traco-fino" d="M40 216 L96 206 M86 220 L150 208 M170 218 L230 206 M244 216 L306 204 M318 214 L364 206"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 4. late pra tudo -->
+    <div class="quadro reveal">
+      <p class="fala">Late pra tudo que passa.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 220" role="img" aria-label="Desenho de um cachorro latindo para outro cachorro do outro lado da rua">
+          <!-- cão latindo -->
+          <g transform="translate(20 48) scale(0.78)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M166 59 C158 66 148 66 140 60"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <circle class="ponto" cx="162" cy="30" r="3.4"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C4 42 4 20 18 12"/>
+          </g>
+          <!-- latidos -->
+          <path class="traco-fino" d="M186 66 C196 60 206 60 216 64 M190 82 C204 78 218 78 232 82 M188 98 C200 100 212 102 222 108"/>
+          <!-- outro cão, longe -->
+          <g transform="translate(266 84) scale(0.5)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M166 59 C156 64 146 64 138 58"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+          </g>
+          <path class="traco-fino" d="M30 190 L96 180 M120 192 L188 180 M212 190 L278 178 M296 188 L360 178"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 5. pula em quem chega -->
+    <div class="quadro reveal">
+      <p class="fala">Pula em quem chega.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 230" role="img" aria-label="Desenho de um cachorro pulando em uma visita na porta">
+          <!-- pessoa -->
+          <g transform="translate(210 26)">
+            <circle class="traco" cx="70" cy="34" r="24"/>
+            <circle class="ponto" cx="62" cy="30" r="2.8"/>
+            <circle class="ponto" cx="79" cy="30" r="2.8"/>
+            <path class="traco" d="M60 46 C68 52 76 52 80 46"/>
+            <path class="traco" d="M70 58 L70 116"/>
+            <path class="traco" d="M70 72 L36 58"/>
+            <path class="traco" d="M70 72 L104 56"/>
+            <path class="traco" d="M70 116 L52 168"/>
+            <path class="traco" d="M70 116 L90 168"/>
+          </g>
+          <!-- cão pulando -->
+          <g transform="translate(52 42) rotate(-32 90 80) scale(0.72)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M166 59 C156 64 146 64 138 58"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <circle class="ponto" cx="162" cy="30" r="3.4"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L150 112 M118 82 L128 116 M34 74 L14 104 M50 82 L38 114"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+          </g>
+          <path class="traco-fino" d="M182 40 L198 28 M206 30 L216 16"/>
+          <path class="traco-fino" d="M40 200 L108 190 M130 202 L200 190 M224 200 L292 188 M310 198 L368 190"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 6. você fala, ele não escuta -->
+    <div class="quadro reveal">
+      <p class="fala">Você fala.<br>Ele não escuta.</p>
+      <p class="apoio">Você repete comandos dez vezes.<br>Fala mais alto.<br>E nada muda.</p>
+    </div>
+
+    <!-- 7. você começa a evitar -->
+    <div class="quadro reveal">
+      <p class="fala menor">Aí você começa a evitar algumas coisas.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 200" role="img" aria-label="Desenho de um relógio marcando um horário tarde da noite">
+          <circle class="traco" cx="128" cy="100" r="62"/>
+          <path class="traco-forte" d="M128 100 L128 58 M128 100 L158 116"/>
+          <circle class="ponto" cx="128" cy="100" r="5"/>
+          <path class="traco-fino" d="M128 44 L128 52 M184 100 L176 100 M128 156 L128 148 M72 100 L80 100"/>
+          <!-- rua vazia -->
+          <path class="traco" d="M228 152 L308 60 M368 152 L326 60"/>
+          <path class="traco-fino" d="M290 148 L306 130 M300 118 L312 104 M310 92 L318 82"/>
+          <path class="traco-fino" d="M214 176 L272 168 M292 178 L352 166"/>
+        </svg>
+      </div>
+      <p class="apoio">Sai no horário mais vazio.<br>Torce para não cruzar com ninguém.<br>Ou simplesmente não passeia mais.</p>
+    </div>
+
+    <!-- 8. amanhã -->
+    <div class="quadro reveal">
+      <span class="marcador grande">Amanhã</span>
+      <p class="fala">Mesma situação.<br>Mesma rua.<br>Mesma cena.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 150" role="img" aria-label="Desenho de tres quadros iguais, repetindo a mesma cena">
+          <g class="traco">
+            <rect x="10" y="24" width="112" height="98" rx="10"/>
+            <rect x="144" y="24" width="112" height="98" rx="10"/>
+            <rect x="278" y="24" width="112" height="98" rx="10"/>
+          </g>
+          <g transform="translate(24 56) scale(0.42)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+          </g>
+          <g transform="translate(158 56) scale(0.42)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+          </g>
+          <g transform="translate(292 56) scale(0.42)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+          </g>
+        </svg>
+      </div>
+      <p class="apoio">Amanhã ele puxa igual.<br>Late igual.<br>Não escuta igual.</p>
+    </div>
+
+    <!-- 9. punch -->
+    <div class="quadro reveal">
+      <p class="fala">Cachorro não muda<br>porque o tempo passou.</p>
+      <p class="fala" style="margin-top:22px;"><em>Ele muda quando aprende<br>outra coisa para fazer.</em></p>
+    </div>
+
+    <!-- 10. a virada -->
+    <div class="quadro reveal">
+      <div class="virada">
+        <p class="fala">Aí você decide<br>mudar essa história.</p>
+        <div class="desenho">
+          <svg viewBox="0 0 400 170" role="img" aria-label="Desenho de uma seta mudando de direção">
+            <path class="traco-forte" d="M40 120 C96 120 116 120 150 120"/>
+            <path class="traco-forte" d="M150 120 C210 120 226 74 300 60"/>
+            <path class="traco-forte" d="M276 44 L306 59 L280 80"/>
+            <circle class="ponto-claro" cx="150" cy="120" r="8"/>
+            <path class="traco-fino" d="M150 138 L150 152 M136 146 L164 146"/>
+          </svg>
+        </div>
+        <p class="apoio">Você para de tentar corrigir<br>o que ele faz<br>e começa a ensinar<br>o que você quer que ele faça.</p>
+      </div>
+    </div>
+
+    <!-- 11. o programa -->
+    <div class="quadro reveal">
+      <p class="fala menor">Você começa as atividades do Programa Meu Cão Educado.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 190" role="img" aria-label="Desenho de um relógio de dez minutos ao lado de um cachorro farejando">
+          <circle class="traco" cx="92" cy="92" r="54"/>
+          <path class="traco-forte" d="M92 92 L92 52 M92 92 L118 100"/>
+          <circle class="ponto" cx="92" cy="92" r="4.5"/>
+          <text x="92" y="168" text-anchor="middle" font-family="Patrick Hand, cursive" font-size="24" fill="#5A6B2D">5 a 10 min</text>
+          <!-- cão farejando o chão -->
+          <g transform="translate(196 44) scale(0.62)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 142 30"/>
+            <path class="traco" d="M142 30 C154 26 172 38 168 54 C164 70 172 78 182 88 C170 92 160 86 156 80"/>
+            <path class="traco" d="M156 80 C146 80 138 74 136 64"/>
+            <path class="traco" d="M136 64 C132 72 132 80 132 88"/>
+            <path class="traco" d="M150 26 L146 4 L164 22"/>
+            <circle class="ponto" cx="160" cy="46" r="3.4"/>
+            <path class="traco" d="M34 74 C68 90 114 90 132 82"/>
+            <path class="traco" d="M132 88 L132 118 M116 84 L112 118 M34 74 L28 118 M50 82 L54 118"/>
+            <path class="traco" d="M18 56 C4 42 6 20 20 12"/>
+            <path class="traco-fino" d="M188 100 C196 106 204 106 212 102 M192 116 C202 118 212 116 220 110"/>
+          </g>
+          <path class="traco-fino" d="M200 176 L262 168 M282 178 L344 166"/>
+        </svg>
+      </div>
+      <p class="apoio">Exercícios curtos, de cinco a dez minutos, que trabalham calma, foco, autocontrole e uma comunicação melhor com o cão.</p>
+    </div>
+
+    <!-- 12. primeira semana -->
+    <div class="quadro reveal">
+      <span class="marcador">Nas primeiras semanas</span>
+      <p class="fala">Ele olha pra você<br>antes de decidir.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Desenho de um cachorro sentado olhando para a pessoa">
+          <!-- pessoa -->
+          <g transform="translate(46 34)">
+            <circle class="traco" cx="70" cy="34" r="24"/>
+            <circle class="ponto" cx="64" cy="30" r="2.8"/>
+            <circle class="ponto" cx="81" cy="30" r="2.8"/>
+            <path class="traco" d="M60 46 C68 52 78 52 82 46"/>
+            <path class="traco" d="M70 58 L70 116"/>
+            <path class="traco" d="M70 72 L40 92"/>
+            <path class="traco" d="M70 72 L104 88"/>
+            <path class="traco" d="M70 116 L52 170"/>
+            <path class="traco" d="M70 116 L90 170"/>
+          </g>
+          <!-- olhar -->
+          <path class="traco-fino" d="M156 84 L216 66" stroke-dasharray="7 9"/>
+          <!-- cão sentado -->
+          <g transform="translate(212 62)">
+            <path class="traco" d="M22 128 C22 96 34 78 52 70 C66 64 74 52 74 38"/>
+            <path class="traco" d="M74 38 C76 22 96 20 100 34 C102 44 108 48 118 52 C110 60 100 60 94 58"/>
+            <path class="traco" d="M94 58 C86 64 76 62 70 56"/>
+            <path class="traco" d="M82 30 L74 10 L94 24"/>
+            <circle class="ponto" cx="96" cy="38" r="3.4"/>
+            <path class="traco" d="M70 56 C64 72 62 90 62 106"/>
+            <path class="traco" d="M62 106 L62 128 L94 128"/>
+            <path class="traco" d="M22 128 L58 128"/>
+            <path class="traco" d="M22 112 C6 108 2 92 12 82"/>
+          </g>
+          <path class="traco-fino" d="M50 218 L114 208 M138 220 L204 208 M228 218 L292 206 M312 216 L368 208"/>
+        </svg>
+      </div>
+      <p class="apoio">Ele começa a prestar mais atenção em você.</p>
+    </div>
+
+    <!-- 13. algumas semanas depois -->
+    <div class="quadro reveal">
+      <span class="marcador">Algumas semanas depois</span>
+      <p class="fala">A guia fica frouxa.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Desenho de uma pessoa passeando com o cachorro do lado e a guia solta">
+          <!-- pessoa em pé, tranquila -->
+          <g transform="translate(52 40)">
+            <circle class="traco" cx="70" cy="34" r="24"/>
+            <circle class="ponto" cx="62" cy="30" r="2.8"/>
+            <circle class="ponto" cx="79" cy="30" r="2.8"/>
+            <path class="traco" d="M58 44 C68 54 78 54 84 44"/>
+            <path class="traco" d="M70 58 L70 116"/>
+            <path class="traco" d="M70 72 L44 96"/>
+            <path class="traco" d="M70 72 L100 96"/>
+            <path class="traco" d="M70 116 L50 170"/>
+            <path class="traco" d="M70 116 L92 170"/>
+          </g>
+          <!-- guia frouxa -->
+          <path class="traco-forte" d="M152 138 C176 176 208 178 236 146"/>
+          <!-- cão andando ao lado -->
+          <g transform="translate(214 82) scale(0.72)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M166 59 C156 64 146 64 138 58"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <circle class="ponto" cx="162" cy="30" r="3.4"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C6 40 10 18 26 12"/>
+          </g>
+          <path class="traco-fino" d="M46 218 L110 208 M134 220 L200 208 M224 218 L288 206 M308 216 L364 208"/>
+        </svg>
+      </div>
+      <p class="apoio">Passa um cachorro do outro lado da rua. Ele olha e segue com você.</p>
+    </div>
+
+    <!-- 14. em casa -->
+    <div class="quadro reveal">
+      <p class="fala">Em casa ele<br>consegue desligar.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 180" role="img" aria-label="Desenho de um cachorro deitado dormindo tranquilo">
+          <!-- caminha -->
+          <path class="traco" d="M60 138 C60 118 90 110 200 110 C310 110 340 118 340 138 C340 148 320 152 200 152 C80 152 60 148 60 138 Z"/>
+          <!-- cão deitado -->
+          <g transform="translate(120 52)">
+            <path class="traco" d="M14 58 C14 36 44 26 96 28 C130 29 142 22 148 12"/>
+            <path class="traco" d="M148 12 C156 2 174 6 174 22 C174 34 166 42 152 44"/>
+            <path class="traco" d="M152 44 C140 48 130 46 124 40"/>
+            <path class="traco" d="M154 14 L150 0 L166 8"/>
+            <path class="traco" d="M14 58 C30 66 70 68 124 62"/>
+            <path class="traco" d="M8 50 C0 44 2 32 12 30"/>
+            <circle class="ponto" cx="162" cy="24" r="3"/>
+            <path class="traco-fino" d="M180 6 C188 0 196 2 200 8 M196 -8 C204 -14 214 -12 218 -6"/>
+          </g>
+          <path class="traco-fino" d="M100 168 L168 160 M196 170 L266 158"/>
+        </svg>
+      </div>
+      <p class="apoio">Não acontece do dia para a noite e cada cão tem o seu tempo. Mas com os exercícios certos dá para conseguir mudanças significativas.</p>
+    </div>
+
+    <!-- 15. agora esse é você -->
+    <div class="quadro reveal">
+      <p class="fala">E agora<br>esse é você e seu cachorro.</p>
+      <div class="desenho">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Desenho de uma pessoa feliz caminhando com o cachorro ao lado">
+          <path class="traco-fino" d="M126 22 L118 6 M162 16 L166 0 M196 26 L210 12"/>
+          <g transform="translate(54 40)">
+            <circle class="traco" cx="70" cy="34" r="24"/>
+            <circle class="ponto" cx="62" cy="28" r="2.8"/>
+            <circle class="ponto" cx="79" cy="28" r="2.8"/>
+            <path class="traco" d="M56 42 C66 56 80 56 86 42"/>
+            <path class="traco" d="M70 58 L70 116"/>
+            <path class="traco" d="M70 72 L42 92"/>
+            <path class="traco" d="M70 72 L102 92"/>
+            <path class="traco" d="M70 116 L48 170"/>
+            <path class="traco" d="M70 116 L94 170"/>
+          </g>
+          <path class="traco-forte" d="M156 132 C182 168 212 170 240 142"/>
+          <g transform="translate(218 80) scale(0.74)">
+            <path class="traco" d="M18 56 C30 40 62 36 96 38 C118 39 132 34 140 24"/>
+            <path class="traco" d="M140 24 C148 12 168 14 170 30 C172 42 178 46 190 50 C182 58 172 60 166 59"/>
+            <path class="traco" d="M166 59 C156 64 146 64 138 58"/>
+            <path class="traco" d="M138 58 C134 68 134 78 134 86"/>
+            <path class="traco" d="M148 20 L140 2 L160 16"/>
+            <circle class="ponto" cx="162" cy="30" r="3.4"/>
+            <path class="traco" d="M34 74 C68 90 114 90 134 80"/>
+            <path class="traco" d="M134 86 L134 116 M118 82 L114 116 M34 74 L28 116 M50 82 L54 116"/>
+            <path class="traco" d="M18 56 C4 38 12 16 28 10"/>
+          </g>
+          <path class="traco-fino" d="M44 218 L108 208 M132 220 L198 208 M222 218 L286 206 M306 216 L362 208"/>
+        </svg>
+      </div>
+      <p class="apoio">Você pega a guia sem aquele caos. Sai de casa com ele porque gosta, não porque precisa. Recebe visita sem trancar o cachorro no quarto.</p>
+    </div>
+
+    <!-- 16. punch final -->
+    <div class="quadro reveal">
+      <p class="fala">Não é outro cachorro.</p>
+      <p class="fala" style="margin-top:20px;"><em>É o mesmo cachorro,<br>que finalmente aprendeu<br>o que fazer.</em></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== FECHO ===================== -->
+<section class="fecho reveal">
+  <div class="wrap">
+    <h2>Seu cachorro vai viver<br>uma dessas<br>duas histórias</h2>
+    <div class="desenho" style="max-width:330px;margin:30px auto 6px;">
+      <svg viewBox="0 0 400 160" role="img" aria-label="Desenho de um caminho que se divide em dois">
+        <path class="traco-forte" d="M200 150 L200 92"/>
+        <path class="traco-forte" d="M200 92 C200 60 152 56 100 50"/>
+        <path class="traco-forte" d="M200 92 C200 60 248 56 300 50"/>
+        <path class="traco-fino" d="M124 34 L96 50 L122 66"/>
+        <path class="traco-fino" d="M276 34 L304 50 L278 66"/>
+        <circle class="ponto-claro" cx="200" cy="92" r="8"/>
+      </svg>
+    </div>
+    <p>A primeira já está acontecendo. A segunda começa no dia em que você faz a primeira atividade com ele.</p>
+  </div>
+</section>
+
+
+<!-- ===================== PROVA ===================== -->
+<section class="secao secao-soft">
+  <div class="wrap reveal">
+    <h2 class="titulo">Quem já mudou<br>essa história</h2>
+  </div>
+
+  <div class="carrossel-wrap reveal">
+    <div class="carrossel" id="carrossel">
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/Depoimento_Tania_July.webp" alt="Depoimento Tania e July" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/Depoimentos_Dior.webp" alt="Depoimento Dior" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_ramon_doguealemao.webp" alt="Depoimento Ramon e Dogue Alemão" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoime_mari_tully.webp" alt="Depoimento Mari e Tully" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_Fred_Yorkshire.webp" alt="Depoimento Fred e Yorkshire" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/Depoimentos_mali_Zuk.webp" alt="Depoimento Mali e Zuk" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/Depoimentos_boxer.webp" alt="Depoimento Boxer" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento de aluno" width="280" height="350" loading="lazy" decoding="async"></div>
+      <div class="card-prova"><img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento de aluno" width="280" height="350" loading="lazy" decoding="async"></div>
+    </div>
+    <button class="seta seta-prev" onclick="rolarProva(-1)" aria-label="Anterior">&#8592;</button>
+    <button class="seta seta-next" onclick="rolarProva(1)" aria-label="Próximo">&#8594;</button>
+    <div class="bolinhas" id="bolinhas" aria-hidden="true"></div>
+  </div>
+</section>
+
+
+<!-- ===================== OFERTA ===================== -->
+<section class="oferta" id="programa">
+  <div class="wrap">
+    <div class="oferta-card reveal">
+      <span class="oferta-selo">Acesso imediato</span>
+      <div class="oferta-nome">Programa Meu Cão Educado</div>
+
+      <div class="oferta-preco">12x de R$ 20,37</div>
+      <div class="oferta-avista">ou R$ 197,00 à vista</div>
+
+      <ul class="oferta-inclui">
+        <li>Mais de 60 atividades e exercícios</li>
+        <li>9 módulos completos</li>
+        <li>Exclusivo: módulo Controle de Impulsos</li>
+        <li>Atividades com passo a passo detalhado</li>
+        <li>Videoaulas, fotos e textos</li>
+        <li>Acesso por 5 anos</li>
+        <li>7 dias de garantia</li>
+        <li>Compra 100% segura</li>
+      </ul>
+
+      <a href="https://chk.eduzz.com/lpos7ejv?utm_source=bio&amp;utm_medium=link&amp;utm_campaign=meucaoeducado&amp;utm_content=pagina-longa" class="btn btn-block">Começar agora</a>
+      <span class="btn-note">Para filhote e adulto, qualquer raça, sem punição</span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p>© 2026 Diego Lima · Veterinário especialista em comportamento canino. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // reveal ao rolar
+  var obs = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visivel'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+
+  // carrossel
+  function rolarProva(dir){
+    var c = document.getElementById('carrossel');
+    c.scrollBy({ left: dir * 300, behavior: 'smooth' });
+  }
+
+  // bolinhas: uma por depoimento, marcando onde você está
+  (function(){
+    var c = document.getElementById('carrossel');
+    var barra = document.getElementById('bolinhas');
+    if(!c || !barra) return;
+    var cards = c.querySelectorAll('.card-prova');
+    for(var i=0;i<cards.length;i++){ barra.appendChild(document.createElement('i')); }
+    var pontos = barra.querySelectorAll('i');
+    function marcar(){
+      var max = c.scrollWidth - c.clientWidth;
+      var pos = max > 0 ? (c.scrollLeft / max) * (pontos.length - 1) : 0;
+      var atual = Math.round(pos);
+      for(var i=0;i<pontos.length;i++){ pontos[i].classList.toggle('ativa', i === atual); }
+    }
+    c.addEventListener('scroll', function(){
+      window.requestAnimationFrame(marcar);
+    }, { passive:true });
+    window.addEventListener('resize', marcar);
+    marcar();
+  })();
+</script>
+
+<!-- Rastreio de origem: carrega os utm_* para o checkout da Eduzz -->
+<script>
+(function () {
+  var PAGINA = 'pagina-longa';
+  var PADRAO = { utm_source: 'bio', utm_medium: 'link', utm_campaign: 'meucaoeducado' };
+  function aplicar() {
+    try {
+      var atual = new URLSearchParams(window.location.search);
+      var params = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].forEach(function (k) {
+        var v = atual.get(k);
+        params[k] = (v && v.trim()) ? v.trim() : PADRAO[k];
+      });
+      params.utm_content = PAGINA;
+      var links = document.querySelectorAll('a[href*="chk.eduzz.com"]');
+      for (var i = 0; i < links.length; i++) {
+        var url = new URL(links[i].href, window.location.href);
+        Object.keys(params).forEach(function (k) {
+          if (params[k]) url.searchParams.set(k, params[k]);
+        });
+        links[i].setAttribute('href', url.toString());
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', aplicar);
+  } else {
+    aplicar();
+  }
+})();
+</script>
+
+</body>
+</html>
