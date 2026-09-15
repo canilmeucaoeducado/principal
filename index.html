@@ -83,10 +83,10 @@
 </header>
 
 <section class="product">
-<h2>Meu Cão Sem Estresse</h2>
+<h2>Meu Cão Estressado</h2>
 <p class="subtitle">Seu cão vive no limite?</p>
 <p class="description">Um programa prático para ajudar cães nervosos, estressados e reativos a lidar melhor com a rua, outros cães, pessoas, barulhos e situações que fazem eles perderem o controle.</p>
-<a class="button" href="https://canilmeucaoeducado.github.io/meucaoeducadov2/">Conheça o Meu Cão Sem Estresse</a>
+<a class="button" href="https://canilmeucaoeducado.github.io/meucaoeducadov2/">Conheça o Meu Cão Estressado</a>
 </section>
 
 <section class="product">
@@ -105,5 +105,55 @@
 
 <footer class="footer">© 2026 Meu Cão Educado · Diego Lima</footer>
 </div>
+
+<script>
+(function () {
+  try {
+    var atual = new URLSearchParams(window.location.search);
+    var chaves = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'];
+    var params = {};
+    chaves.forEach(function (k) {
+      var v = atual.get(k);
+      if (v && v.trim()) params[k] = v.trim();
+    });
+
+    var origem = params.utm_source ? params.utm_source.toLowerCase() : '';
+
+    // 1. Repassa os UTM para os links dos programas
+    if (params.utm_source) {
+      if (!params.utm_campaign) params.utm_campaign = 'bio';
+      params.utm_content = 'pagina-principal';
+
+      var links = document.querySelectorAll('.product a.button');
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute('href');
+        if (href.indexOf('wa.me') !== -1) continue;
+        var url = new URL(href, window.location.href);
+        Object.keys(params).forEach(function (k) {
+          url.searchParams.set(k, params[k]);
+        });
+        links[i].setAttribute('href', url.toString());
+      }
+    }
+
+    // 2. Ajusta o texto da mensagem do WhatsApp conforme a rede de origem
+    var REDES = {
+      instagram: 'Instagram',
+      facebook: 'Facebook',
+      tiktok: 'TikTok'
+    };
+    if (REDES[origem]) {
+      var wpp = document.querySelector('.product a.button[href*="wa.me"]');
+      if (wpp) {
+        var u = new URL(wpp.getAttribute('href'), window.location.href);
+        var texto = u.searchParams.get('text') || '';
+        texto = texto.replace('Vi seu Instagram', 'Vi seu ' + REDES[origem]);
+        u.searchParams.set('text', texto);
+        wpp.setAttribute('href', u.toString());
+      }
+    }
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>
