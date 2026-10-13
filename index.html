@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Meu Cão Educado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,6 +104,34 @@
     }
 }
 
+/* ===== Otimização mobile ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+.header h1,.product h2{text-wrap:balance}
+.description{text-wrap:pretty}
+.button{touch-action:manipulation;transition:transform .12s ease,filter .12s ease}
+.button:active{transform:scale(.98);filter:brightness(.92)}
+.button:focus-visible{outline:3px solid #111;outline-offset:3px}
+
+@media (max-width:600px){
+    .page{
+        padding-top:max(24px,env(safe-area-inset-top));
+        padding-bottom:max(32px,env(safe-area-inset-bottom));
+    }
+    .header h1{font-size:30px;line-height:1.1;padding:0 6px}
+    .product{padding:26px 22px 26px}
+    .product h2{font-size:23px;line-height:1.15;margin-bottom:12px}
+    .description{font-size:16px;line-height:1.55;margin-bottom:20px}
+    .button{min-height:54px;padding:15px 18px;font-size:16px;border-radius:8px}
+    .footer{padding-bottom:env(safe-area-inset-bottom)}
+}
+
+@media (max-width:360px){
+    .header h1{font-size:26px}
+    .product{padding:24px 18px}
+    .product h2{font-size:21px}
+    .description{font-size:15.5px}
+    .button{font-size:15px;padding:14px 12px}
+}
 </style>
 <link rel="dns-prefetch" href="https://connect.facebook.net">
 <link rel="dns-prefetch" href="https://www.clarity.ms">
@@ -143,7 +171,7 @@ window.addEventListener('load', function() {
 <body>
 <div class="page">
 <header class="header">
-<h1>Diego Lima - Veterinário<br>Comportamento Canino</h1>
+<h1>Médico Veterinário Diego Lima</h1>
 <p><span class="header-bridge"></span></p>
 
 </header>
@@ -151,26 +179,26 @@ window.addEventListener('load', function() {
 <section class="product">
 <h2>Meu Cão Educado 🎯</h2>
 
-<p class="description">Para cães ligados no 220v que puxam no passeio, pulam nas pessoas, não sabem esperar ou vivem acelerados. Aqui você ensina seu cão a prestar atenção em você, aprender vários comandos e controlar os impulsos.</p>
-<a class="button" href="https://canilmeucaoeducado.github.io/meucaoeducado/">Conhecer este programa</a>
+<p class="description">Para você que está cansado de ser arrastado nos passeios, passar vergonha com as visitas e ver seu cachorro cheio de energia, agitado e sem te ouvir, mesmo depois de brincar e passear. Você tenta cansar ele, mas parece que ele nunca desliga e você nunca tem paz dentro de casa.</p>
+<a class="button" href="https://canilmeucaoeducado.github.io/meucaoeducado/">Conhecer o programa</a>
 </section>
 
 <section class="product">
 <h2>Xixi e Cocô no Lugar Certo 🚽</h2>
-<p class="description">Para quem quer ensinar o cachorro a fazer xixi e cocô no lugar certo e parar de sujar a casa inteira.</p>
-<a class="button button-orange" href="https://canilmeucaoeducado.github.io/banheiro/">Quero aprender o método</a>
+<p class="description">Para você que não aguenta mais limpar xixi e cocô pela casa inteira, encontrar surpresas no chão, sentir cheiro de urina e ver a casa suja poucos minutos depois de limpar.</p>
+<a class="button button-orange" href="https://canilmeucaoeducado.github.io/banheiro/">Quero resolver isso</a>
 </section>
 
 <section class="product">
 <h2>Meu Cão Sem Estresse 🧘‍♂️</h2>
-<p class="description">Para quem precisa resolver um problema específico de comportamento: cachorro reativo a cães, motos, bicicletas, carros ou pessoas, latidos excessivos, medo de fogos e trovões, insegurança ou comportamentos agressivos.</p>
-<a class="button" href="https://canilmeucaoeducado.github.io/meucaoeducadov2/">Conhecer este programa</a>
+<p class="description">Para você que vive com medo de passear com seu cão reativo, passa vergonha com os latidos e se desespera quando ele avança contra cães, motos ou pessoas. Para você que sofre ao ver seu cachorro apavorado com fogos e trovões e já não sabe mais o que fazer para ajudar ele.</p>
+<a class="button" href="https://canilmeucaoeducado.github.io/meucaoeducadov2/">Quero ajuda com meu cão</a>
 </section>
 
 <section class="product">
 <h2>Consulta Online Individual 💬</h2>
-<p class="description">Você vai agendar uma videochamada comigo. Nela, vou entender melhor o comportamento e a rotina do seu cão, identificar o que está acontecendo e definir um plano de treino personalizado para vocês.</p>
-<a class="button button-orange" href="https://wa.me/5527997880811?text=Oi%21%20Vi%20seu%20Instagram.%20Meu%20cachorro%20tem%20um%20comportamento%20que%20est%C3%A1%20me%20incomodando.%20Pode%20me%20ajudar%3F">Preciso de ajuda personalizada</a>
+<p class="description">Se você prefere receber ajuda personalizada e quer agendar uma consulta online comigo, essa aqui é a melhor opção para você.</p>
+<a class="button button-orange" href="https://wa.me/5527997880811?text=Oi%21%20Vi%20seu%20Instagram.%20Meu%20cachorro%20tem%20um%20comportamento%20que%20est%C3%A1%20me%20incomodando.%20Pode%20me%20ajudar%3F">Agendar minha consulta</a>
 </section>
 
 <footer class="footer">© 2026 Meu Cão Educado · Diego Lima</footer>
